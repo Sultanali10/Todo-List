@@ -8,6 +8,7 @@
 import UIKit
 
 class TodoVC: UIViewController {
+    
    
     var todosArray = [
         TodoStruct(todoTitle: "رياضة المشي", todoImage: UIImage(named: "Image-2"), todoDetails: "المشي مفيد جدا لازم نمشي كل يوم لمدة نصف ساعة لمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لاز"),
@@ -26,6 +27,8 @@ class TodoVC: UIViewController {
         navigationItem.title = "مهامي"
         
         NotificationCenter.default.addObserver(self, selector: #selector(newTodoAdded), name: NSNotification.Name(rawValue: "NewTodoAdded"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(currentTodoEdited), name: NSNotification.Name("CurrentTodoEdited"), object: nil)
        
     }
     
@@ -34,15 +37,19 @@ class TodoVC: UIViewController {
         if let todo = notification.userInfo?["TheNewTodo"] as? TodoStruct{
             todosArray.append(todo)
             todosTableView.reloadData()
-
         }
-        
         
     }
     
-
+    @objc func currentTodoEdited(notification : Notification) {
+        if let todo = notification.userInfo?["EditedTodo"] as? TodoStruct{
+            if let index = notification.userInfo?["EditedTodoIndex"] as? Int{
+                todosArray[index] = todo
+                todosTableView.reloadData()
+            }
+        }
+    }
     
-
 }
 
 
@@ -74,6 +81,7 @@ extension TodoVC: UITableViewDataSource , UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(identifier: "TodoDetails") as? TodoDetailsVC
 
         if let viewC = vc {
+            viewC.index = indexPath.row
             viewC.todo = todosArray[indexPath.row]
             navigationController?.pushViewController(viewC, animated: true)
         }

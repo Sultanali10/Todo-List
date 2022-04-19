@@ -11,7 +11,7 @@
         <!--مهامي-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="مهامي" id="BYZ-38-t0r" customClass="TodoVC" customModule="Todo_List" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" title="مهامي" id="BYZ-38-t0r" customClass="TodoVC" customModule="Todo_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,15 +116,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvZ-5Y-0sF">
                                 <rect key="frame" x="0.0" y="360" width="414" height="89.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-pZ-hpE">
-                                        <rect key="frame" x="112" y="19" width="294" height="51"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-pZ-hpE">
+                                        <rect key="frame" x="99" y="11.5" width="307" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjk-AT-E8M">
+                                        <rect key="frame" x="8" y="20" width="90" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="523-5n-m0A"/>
+                                            <constraint firstAttribute="width" constant="90" id="9nz-hI-L4X"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.24131286139999999" green="0.72645235060000002" blue="0.62744492289999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="تعديل"/>
+                                        <connections>
+                                            <action selector="editButtonClicked:" destination="R5M-Fk-UnD" eventType="touchUpInside" id="r9H-5N-Tzz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.38472813369999997" green="0.71455019710000001" blue="0.63136732579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="Zv2-pZ-hpE" firstAttribute="leading" secondItem="xjk-AT-E8M" secondAttribute="trailing" constant="1" id="6dA-KU-aH9"/>
+                                    <constraint firstItem="xjk-AT-E8M" firstAttribute="leading" secondItem="lvZ-5Y-0sF" secondAttribute="leading" constant="8" id="DdG-Gm-HA4"/>
+                                    <constraint firstItem="xjk-AT-E8M" firstAttribute="centerY" secondItem="lvZ-5Y-0sF" secondAttribute="centerY" id="KVz-dQ-NYC"/>
                                     <constraint firstAttribute="trailing" secondItem="Zv2-pZ-hpE" secondAttribute="trailing" constant="8" id="Rse-78-ZD2"/>
                                     <constraint firstItem="Zv2-pZ-hpE" firstAttribute="centerY" secondItem="lvZ-5Y-0sF" secondAttribute="centerY" id="lSa-sS-a1d"/>
                                     <constraint firstItem="Zv2-pZ-hpE" firstAttribute="height" secondItem="lvZ-5Y-0sF" secondAttribute="height" multiplier="0.75" id="ozA-Qx-qVc"/>
@@ -164,9 +180,10 @@
                     <tabBarItem key="tabBarItem" title="مهامي" image="list.bullet.rectangle" catalog="system" id="tPS-ie-PcS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="UZI-br-dce">
-                        <rect key="frame" x="0.0" y="44" width="414" height="105.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.38472813369999997" green="0.71455019710000001" blue="0.63136732579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.93727630380000004" green="0.9372381568" blue="0.93725579979999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
@@ -187,7 +204,7 @@
         <!--مهمة جديدة-->
         <scene sceneID="0Ya-A2-3ET">
             <objects>
-                <viewController id="ga0-4m-Zjb" customClass="AddTodoVC" customModule="Todo_List" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddOrEditVC" id="ga0-4m-Zjb" customClass="AddTodoVC" customModule="Todo_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0C5-qP-bDz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,6 +275,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="مهمة جديدة" id="dIc-Tc-kTM"/>
                     <connections>
+                        <outlet property="addorEditButton" destination="fo1-G6-PuK" id="Pmy-Nu-J3s"/>
                         <outlet property="detailsTextField" destination="RTC-Bb-8gu" id="hEN-Jk-vnY"/>
                         <outlet property="titleTextField" destination="UIB-KK-Dde" id="Hmh-Et-8s1"/>
                     </connections>
@@ -272,6 +290,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hzx-s5-JOH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ku9-O9-Kao">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
