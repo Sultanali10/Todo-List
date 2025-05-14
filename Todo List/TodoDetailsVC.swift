@@ -21,6 +21,7 @@ class TodoDetailsVC: UIViewController {
         super.viewDidLoad()
         detailsTitle.text = todo.todoTitle
         detailsDetails.text = todo.todoDetails
+//        detailsImage.image = todo.todoImage
         
         if todo.todoImage != nil {
             detailsImage.image = todo.todoImage
@@ -36,6 +37,7 @@ class TodoDetailsVC: UIViewController {
             self.todo = todo
             detailsTitle.text = todo.todoTitle
             detailsDetails.text = todo.todoDetails
+            detailsImage.image = todo.todoImage
         }
     }
     
@@ -51,6 +53,17 @@ class TodoDetailsVC: UIViewController {
         }
         
     }
+    
+    @IBAction func deleteButtonClicked(_ sender: Any) {
+        
+        //add alert before delete
+        //add alert after delete
+        //move to homepage
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DeleteTodo"), object: nil, userInfo: ["DeletedTodoIndex" : index!])
+        
+    }
+    
     
 
 

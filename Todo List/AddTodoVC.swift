@@ -13,10 +13,19 @@ class AddTodoVC: UIViewController {
     var index: Int?
     var isCreation = true
     
+    @IBOutlet var todoImage: UIImageView!
     @IBOutlet var addorEditButton: UIButton!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var detailsTextField: UITextField!
     
+    @IBAction func changeImageButtonClicked(_ sender: Any) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         if !isCreation{
@@ -24,6 +33,7 @@ class AddTodoVC: UIViewController {
             navigationItem.title = "تعديل المهمة"
             titleTextField.text = todo.todoTitle
             detailsTextField.text = todo.todoDetails
+            todoImage.image = todo.todoImage
         }
 
     }
@@ -32,7 +42,7 @@ class AddTodoVC: UIViewController {
         
         if isCreation {
             
-            let todo = TodoStruct(todoTitle: titleTextField.text!, todoImage: nil, todoDetails: detailsTextField.text!)
+            let todo = TodoStruct(todoTitle: titleTextField.text!, todoImage: todoImage.image, todoDetails: detailsTextField.text!)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NewTodoAdded"), object: nil, userInfo: ["TheNewTodo": todo])
             
             let alert = UIAlertController(title: "مبروك", message: "تمت اضافة المهمة بنجاح", preferredStyle: UIAlertController.Style.alert)
@@ -41,7 +51,7 @@ class AddTodoVC: UIViewController {
             
         } else {
             
-            let todo = TodoStruct(todoTitle: titleTextField.text!, todoImage: nil, todoDetails: detailsTextField.text!)
+            let todo = TodoStruct(todoTitle: titleTextField.text!, todoImage: todoImage.image, todoDetails: detailsTextField.text!)
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CurrentTodoEdited"), object: nil, userInfo: ["EditedTodo": todo , "EditedTodoIndex": index!])
             
@@ -58,4 +68,16 @@ class AddTodoVC: UIViewController {
         tabBarController?.selectedIndex = 0
         }
 
+}
+
+extension AddTodoVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        dismiss(animated: true)
+        todoImage.image = image
+        
+    }
+
+    
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class TodoVC: UIViewController {
     
+    
    
     var todosArray = [
         TodoStruct(todoTitle: "رياضة المشي", todoImage: UIImage(named: "Image-2"), todoDetails: "المشي مفيد جدا لازم نمشي كل يوم لمدة نصف ساعة لمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لازلمشي مفيد جدا لاز"),
@@ -29,6 +30,8 @@ class TodoVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(newTodoAdded), name: NSNotification.Name(rawValue: "NewTodoAdded"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(currentTodoEdited), name: NSNotification.Name("CurrentTodoEdited"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteTodo), name: NSNotification.Name("DeleteTodo"), object: nil)
        
     }
     
@@ -47,6 +50,14 @@ class TodoVC: UIViewController {
                 todosArray[index] = todo
                 todosTableView.reloadData()
             }
+        }
+    }
+    
+    @objc func deleteTodo(notification : Notification) {
+        if let index = notification.userInfo?["DeletedTodoIndex"] as? Int {
+            todosArray.remove(at: index)
+            todosTableView.reloadData()
+
         }
     }
     
